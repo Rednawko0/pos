@@ -1,20 +1,20 @@
 databases:
-  - name: carritocomidadb
+  - name: posdb
     plan: free
-    databaseName: carritocomida
-    user: carritocomida
+    databaseName: pos
+    user: pos
 
 services:
   - type: web
     plan: free
-    name: carritocomida
+    name: posApp
     runtime: python
     buildCommand: "./build.sh"
     startCommand: "python -m gunicorn pos.asgi:application -k uvicorn.workers.UvicornWorker"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: carritocomidadb
+          name: posdb
           property: connectionString
       - key: SECRET_KEY
         generateValue: true

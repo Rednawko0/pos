@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure--w(dug*va_megpa25w$gmv8o6+f8!fg_*m1^u$)z25pab0hicm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['carritocomida.onrender.com']
+ALLOWED_HOSTS = ['pos.onrender.com']
 # Application definition
 
 INSTALLED_APPS = [
@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'pos.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
-        default='postgresql://postgres:postgres@localhost:5432/carritocomida',
+        default='postgresql://postgres:postgres@localhost:5432/pos',
         conn_max_age=600
     )
 }
@@ -132,7 +132,7 @@ STATICFILES_DIRS = (
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = '/login'
+LOGIN_URL = '/'
 
 if not DEBUG:
     # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
