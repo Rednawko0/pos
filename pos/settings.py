@@ -28,9 +28,6 @@ SECRET_KEY = 'django-insecure--w(dug*va_megpa25w$gmv8o6+f8!fg_*m1^u$)z25pab0hicm
 DEBUG = False
 
 ALLOWED_HOSTS = ['carritocomida.onrender.com']
-it config --global user.email "you@example.com"
-  git config --global user.name "Your Name"
-
 # Application definition
 
 INSTALLED_APPS = [
