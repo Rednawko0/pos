@@ -1,22 +1,12 @@
-databases:
-  - name: carritocomidadb
-    plan: free
-    databaseName: carritocomida
-    user: carritocomida
+#!/usr/bin/env bash
+# Exit on error
+set -o errexit
 
-services:
-  - type: web
-    plan: free
-    name: carritocomida
-    runtime: python
-    buildCommand: "./build.sh"
-    startCommand: "python -m gunicorn carritocomida.asgi:application -k uvicorn.workers.UvicornWorker"
-    envVars:
-      - key: DATABASE_URL
-        fromDatabase:
-          name: carritocomidadb
-          property: connectionString
-      - key: SECRET_KEY
-        generateValue: true
-      - key: WEB_CONCURRENCY
-        value: 4
+# Modify this line as needed for your package manager (pip, poetry, etc.)
+pip install -r requirements.txt
+
+# Convert static asset files
+python manage.py collectstatic --no-input
+
+# Apply any outstanding database migrations
+python manage.py migrate
