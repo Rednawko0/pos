@@ -38,7 +38,7 @@ def logoutuser(request):
     return redirect('/')
 
 # Create your views here.
-@login_required
+#@login_required
 def home(request):
     now = datetime.now()
     current_year = now.strftime("%Y")
@@ -74,7 +74,7 @@ def about(request):
     return render(request, 'posApp/about.html',context)
 
 #Categories
-@login_required
+#@login_required
 def category(request):
     category_list = Category.objects.all()
     # category_list = {}
@@ -83,7 +83,7 @@ def category(request):
         'category':category_list,
     }
     return render(request, 'posApp/category.html',context)
-@login_required
+#@login_required
 def manage_category(request):
     category = {}
     if request.method == 'GET':
@@ -99,7 +99,7 @@ def manage_category(request):
     }
     return render(request, 'posApp/manage_category.html',context)
 
-@login_required
+#@login_required
 def save_category(request):
     data =  request.POST
     resp = {'status':'failed'}
@@ -115,7 +115,7 @@ def save_category(request):
         resp['status'] = 'failed'
     return HttpResponse(json.dumps(resp), content_type="application/json")
 
-@login_required
+#@login_required
 def delete_category(request):
     data =  request.POST
     resp = {'status':''}
@@ -128,7 +128,7 @@ def delete_category(request):
     return HttpResponse(json.dumps(resp), content_type="application/json")
 
 # Products
-@login_required
+#@login_required
 def products(request):
     product_list = Products.objects.all()
     context = {
@@ -136,7 +136,7 @@ def products(request):
         'products':product_list,
     }
     return render(request, 'posApp/products.html',context)
-@login_required
+#@login_required
 def manage_products(request):
     product = {}
     categories = Category.objects.filter(status = 1).all()
@@ -159,7 +159,7 @@ def test(request):
         'categories' : categories
     }
     return render(request, 'posApp/test.html',context)
-@login_required
+#@login_required
 def save_product(request):
     data =  request.POST
     resp = {'status':'failed'}
@@ -186,7 +186,7 @@ def save_product(request):
             resp['status'] = 'failed'
     return HttpResponse(json.dumps(resp), content_type="application/json")
 
-@login_required
+#@login_required
 def delete_product(request):
     data =  request.POST
     resp = {'status':''}
@@ -197,7 +197,7 @@ def delete_product(request):
     except:
         resp['status'] = 'failed'
     return HttpResponse(json.dumps(resp), content_type="application/json")
-@login_required
+#@login_required
 def pos(request):
     products = Products.objects.filter(status = 1)
     product_json = []
@@ -211,7 +211,7 @@ def pos(request):
     # return HttpResponse('')
     return render(request, 'posApp/pos.html',context)
 
-@login_required
+#@login_required
 def checkout_modal(request):
     grand_total = 0
     if 'grand_total' in request.GET:
@@ -221,7 +221,7 @@ def checkout_modal(request):
     }
     return render(request, 'posApp/checkout.html',context)
 
-@login_required
+#@login_required
 def save_pos(request):
     resp = {'status':'failed','msg':''}
     data = request.POST
@@ -257,7 +257,7 @@ def save_pos(request):
         print("Unexpected error:", sys.exc_info()[0])
     return HttpResponse(json.dumps(resp),content_type="application/json")
 
-@login_required
+#@login_required
 def salesList(request):
     sales = Sales.objects.all()
     sale_data = []
@@ -280,7 +280,7 @@ def salesList(request):
     # return HttpResponse('')
     return render(request, 'posApp/sales.html',context)
 
-@login_required
+#@login_required
 def receipt(request):
     id = request.GET.get('id')
     sales = Sales.objects.filter(id = id).first()
@@ -299,7 +299,7 @@ def receipt(request):
     return render(request, 'posApp/receipt.html',context)
     # return HttpResponse('')
 
-@login_required
+#@login_required
 def delete_sale(request):
     resp = {'status':'failed', 'msg':''}
     id = request.POST.get('id')
